@@ -1,7 +1,7 @@
 module.exports = () => {
   return async function auth(ctx, next) {
     const currentUser = ctx.session.currentUser;
-    const whiteList = [ '/api/v1/user/login', '/api/v1/user/register' ];
+    const whiteList = [ '/api/v1/admin/user/login', '/api/v1/admin/user/register' ];
     const isSkipPath = whiteList.includes(ctx.request.path);
 
     if (currentUser || isSkipPath) {

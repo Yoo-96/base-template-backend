@@ -1,11 +1,11 @@
 'use strict';
-const db = require('../../utils/db.js');
+const db = require('../../../utils/db.js');
 
 // User模型
 module.exports = app => {
   const { STRING, DATE, TINYINT } = app.Sequelize;
 
-  const User = db.defineModel(app, 'users', {
+  const User = db.defineModel(app, 'admin_users', {
     // id: { type: CHAR, unique: true, primaryKey: true }, // 用户id
     account: {
       type: STRING,
@@ -55,8 +55,13 @@ module.exports = app => {
       comment: '最后登录ip',
     },
   });
-  User.sync({
-    alter: true, // 启用更新
-  });
+
+  User.associate = () => {
+    User.belongsToMany(app.model.Admin.Role, {
+      through: app.model.Admin.RoleUsers,
+    });
+  };
+
+  // User.sync({ alter: true });
   return User;
 };

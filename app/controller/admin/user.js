@@ -5,13 +5,18 @@ const encryption = require('../../../utils/encryption');
 
 class UserController extends Controller {
   // 用户列表
-  async list () {
-    const { ctx, app } = this;
+  async query () {
+    const { ctx } = this;
+    const { currentPage = 1, pageSize = 20 } = ctx.query;
+    const result = await ctx.service.admin.user.query({ pageSize, currentPage });
 
-    ctx.body = {
-      msg: 'success'
-    };
-    ctx.status = 200;
+    if (result) {
+      return ctx.helper.success(ctx, result);
+    } else {
+      ctx.helper.fail(ctx, {
+        msg: '获取用户列表失败'
+      });
+    }
   };
 
   // 创建用户
@@ -49,6 +54,10 @@ class UserController extends Controller {
       return ctx.helper.fail(ctx, {
         msg: `账号或密码错误`
       });
+    } else if (result.isOpen !== 1) {
+      return ctx.helper.fail(ctx, {
+        msg: `该账号已经禁用，请联系管理员`
+      });
     }
     ctx.session.currentUser = result;
     return ctx.helper.success(ctx, {
@@ -75,6 +84,19 @@ class UserController extends Controller {
       });
     }
     return ctx.helper.success(ctx, currentUser);
+  }
+
+  // 启用、禁用用户
+  async updateUserStatus () {
+    const { ctx } = this;
+    const { id } = ctx.params;
+    const result = await ctx.service.admin.user.updateUserStatus(id);
+    if (!result) {
+      return ctx.helper.fail(ctx, {
+        msg: `修改失败`
+      });
+    }
+    return ctx.helper.success(ctx);
   }
 }
 
