@@ -1,5 +1,5 @@
 'use strict';
-const { protect } = require('./util/permission');
+const { protect } = require('../utils/permission');
 
 /**
  * @param {Egg.Application} app - egg application
@@ -30,4 +30,9 @@ module.exports = app => {
   router.delete('/api/v1/admin/permission/:id', protect('DELETE_PERMISSION'), controller.admin.permission.remove); // 删除权限
   router.get('/api/v1/admin/user', protect('LIST_USER'), controller.admin.user.query); // 用户列表
   router.put('/api/v1/admin/user/:id/status', protect('UPDATE_ROLE_PERMISSION'), controller.admin.user.updateUserStatus); // 启用、禁用用户
+
+  // 文件模块
+  router.post('/api/v1/file/uploadImage', controller.file.index.uploadImage); // 图片上传
+  router.get('/api/v1/file/imagePreview', controller.file.index.imagePreview); // 图片预览
+  router.get('/api/v1/file/cImagePreview', controller.file.index.imagePreviewToCOS); // 腾讯cos图片预览
 };

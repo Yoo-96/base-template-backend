@@ -1,3 +1,4 @@
+'use strict';
 // 数据模型默认配置
 const uuidv1 = require('uuid/v1');
 
@@ -29,7 +30,6 @@ function defineModel(app, name, attributes, options = {}) {
       };
     }
   }
-
 
   return app.model.define(name, attrs, {
     createdAt: 'createdAt',

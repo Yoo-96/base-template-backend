@@ -1,5 +1,5 @@
+'use strict';
 const crypto = require('crypto');
-
 
 /**
  * hash方法

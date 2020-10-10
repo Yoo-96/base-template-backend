@@ -15,7 +15,7 @@
  */
 'use strict';
 const _ = require('lodash');
-const { populatePropertiesFromArray } = require('./util');
+const { populatePropertiesFromArray } = require('./utils');
 
 const protect = spec => {
   const authority = [];

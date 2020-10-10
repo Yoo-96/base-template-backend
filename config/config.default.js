@@ -1,6 +1,7 @@
 /* eslint valid-jsdoc: "off" */
 
 'use strict';
+const path = require('path');
 
 /**
  * @param {Egg.EggAppInfo} appInfo app info
@@ -75,6 +76,72 @@ module.exports = appInfo => {
     encrypt: false,
     renew: false, // 每次访问页面都会给session会话延长时间
     // externalKey: 'access_token',
+  };
+
+  // 七牛云配置
+  config.qiniu = {
+    accessKey: 'QfA6PtKlgFDoAs0IyTLJURqYy_4oxr3ANrYbA8WI',
+    secretKey: 'grjVqeQezIXJEI-EOyOXYU8-Ae9_VBETn2e_gmF1',
+    bucket: 'base-template',
+    domainName: 'http://qhgbs10e2.hn-bkt.clouddn.com/', // 七牛云测试域名，有效期30天
+  };
+
+  // 腾讯COS配置
+  config.cos = {
+    AppId: '1254446717',
+    SecretId: 'AKIDs45qhyspNiHwRpA5OhlTzvnT2qQoRMVd',
+    SecretKey: 'I8RVTEIJBKbihU8pJaqNnCwjJYfolXbk',
+    Bucket: 'base-1254446717',
+    Region: 'ap-guangzhou',
+  };
+
+  // 文件储存路径
+  config.upload_base_path = path.join(appInfo.baseDir, 'temp');
+  // 本读图片预览接口
+  config.image_preview_url = 'http://localhost:7001/api/v1/file/imagePreview';
+  // 腾讯cos图片预览接口
+  config.image_preview_cos_url = 'http://localhost:7001/api/v1/file/cImagePreview';
+
+  config.multipart = {
+    mode: 'file',
+    fileSize: '100mb',
+    whitelist: filename => {
+      const whitelist = [
+        // images
+        '.jpg',
+        '.jpeg', // image/jpeg
+        '.png', // image/png, image/x-png
+        '.gif', // image/gif
+        '.bmp', // image/bmp
+        '.wbmp', // image/vnd.wap.wbmp
+        '.webp',
+        '.tif',
+        '.psd',
+        // text
+        '.svg',
+        '.js', '.jsx',
+        '.json',
+        '.css', '.less',
+        '.html', '.htm',
+        '.xml',
+        '.pdf',
+        '.doc', '.docx', '.xls', '.xlsx',
+        '.ppt', '.pptx',
+        // tar
+        '.zip',
+        '.gz', '.tgz', '.gzip','.rar',
+        // video
+        '.mp3',
+        '.mp4',
+        '.avi',
+      ];
+
+      if (filename === 'blob') {
+        return true;
+      }
+
+      return whitelist.includes(path.extname(filename).toLowerCase());
+    },
   };
 
   return {
