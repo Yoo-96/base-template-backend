@@ -38,7 +38,7 @@ class UserService extends Service {
       }
     };
     const result = await ctx.model.Admin.User.findOne(query);
-    if (result.isOpen === 1) {
+    if (result && result.isOpen === 1) {
       await ctx.model.Admin.User.update({
         lastLogin: new Date()
       }, query);
