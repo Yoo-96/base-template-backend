@@ -47,8 +47,8 @@ class UserController extends Controller {
     const validateResult = await ctx.validate('user.login', { mobile, password });
     if (!validateResult) return;
 
-    const pwdHash = encryption.md5(app, password);
-    const result = await ctx.service.admin.user.login(mobile, pwdHash);
+    // const pwdHash = encryption.md5(app, password);
+    const result = await ctx.service.admin.user.login(mobile, password);
 
     if (!result) {
       return ctx.helper.fail(ctx, {
