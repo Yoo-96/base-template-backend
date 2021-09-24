@@ -7,7 +7,7 @@ const path = require('path');
 
 class FileController extends Controller {
   async uploadImage() {
-    const { ctx, app } = this;
+    const { ctx } = this;
     const file = ctx.request.files[0];
 
     const extension = mime.extension(file.mimeType);
@@ -28,7 +28,7 @@ class FileController extends Controller {
     }
   }
   // 本地图片预览
-  async imagePreview () {
+  async imagePreview() {
     const { ctx, app } = this;
     const { file } = ctx.query;
 
@@ -46,14 +46,14 @@ class FileController extends Controller {
     }
   }
   // 腾讯cos图片预览
-  async imagePreviewToCOS () {
+  async imagePreviewToCOS() {
     const { ctx, app } = this;
     const { file } = ctx.query;
     const result = await ctx.service.file.index.imagePreviewToCOS(file);
     if (result.statusCode === 404) {
       ctx.status = 404;
       ctx.body = '访问资源不存在';
-      return
+      return;
     }
 
     const uploadBasePath = app.config.upload_base_path + '/cos';

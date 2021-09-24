@@ -43,7 +43,7 @@ const protect = spec => {
 
     ctx.status = 403;
     ctx.body = {
-      msg: 'Access denied'
+      msg: 'Access denied',
     };
   };
 };

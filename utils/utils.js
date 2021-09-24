@@ -9,10 +9,10 @@ _.mixin({
 
 /**
  * 数字转换-多用于入参string转换int
- * @param str
- * @returns {number}
+ * @param {string} str 原始字符串
+ * @return {number} 放回转换后的结果
  */
-const toInt = (str) => {
+const toInt = str => {
   if (typeof str === 'number') return str;
   if (!str) return str;
   return parseInt(str, 10) || 0;
@@ -20,9 +20,9 @@ const toInt = (str) => {
 
 /**
  * 从多维数组中找出匹配 key 值的所有属性的值
- * @param arr
- * @param key
- * @return {*}
+ * @param {array} arr 原始数组
+ * @param {string} key 需要匹配的 key
+ * @return {*} 返回结果
  */
 const populatePropertiesFromArray = (arr, key) => {
   return _(arr)

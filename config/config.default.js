@@ -20,7 +20,7 @@ module.exports = appInfo => {
   config.middleware = [ 'errorHandler', 'auth' ];
 
   // md5盐
-  config.salt = "base|md5|salt";
+  config.salt = 'base|md5|salt';
 
   // add your user config here
   const userConfig = {
@@ -54,7 +54,7 @@ module.exports = appInfo => {
           msg: '参数错误',
         };
       }
-    }
+    },
   };
 
   // redis配置
@@ -129,7 +129,7 @@ module.exports = appInfo => {
         '.ppt', '.pptx',
         // tar
         '.zip',
-        '.gz', '.tgz', '.gzip','.rar',
+        '.gz', '.tgz', '.gzip', '.rar',
         // video
         '.mp3',
         '.mp4',

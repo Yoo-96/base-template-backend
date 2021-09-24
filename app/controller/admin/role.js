@@ -15,11 +15,11 @@ class RoleController extends Controller {
 
     if (result) {
       return ctx.helper.success(ctx, result);
-    } else {
-      ctx.helper.fail(ctx, {
-        msg: '获取角色列表失败'
-      });
     }
+    ctx.helper.fail(ctx, {
+      msg: '获取角色列表失败',
+    });
+
   }
   async create() {
     const { ctx } = this;
@@ -34,7 +34,7 @@ class RoleController extends Controller {
       name,
       description,
       status,
-      createUser: ctx.session.currentUser.id
+      createUser: ctx.session.currentUser.id,
     };
     const { isOK, msg } = await ctx.service.admin.role.create(data);
     if (!isOK) {
@@ -42,7 +42,7 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  async update () {
+  async update() {
     const { ctx } = this;
     const {
       id,
@@ -65,21 +65,21 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  async remove () {
+  async remove() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.remove(id);
     ctx.helper.success(ctx, 'success', result);
   }
   // 查询角色用户
-  async getRoleUsers () {
+  async getRoleUsers() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRoleUsers(id);
     ctx.helper.success(ctx, result);
   }
   // 修改用户角色
-  async updateRoleUsers () {
+  async updateRoleUsers() {
     const { ctx } = this;
     const { id } = ctx.params;
     const { userIds } = ctx.request.body;
@@ -87,14 +87,14 @@ class RoleController extends Controller {
     ctx.helper.success(ctx, result);
   }
   // 查询角色用户
-  async getRolePermissions () {
+  async getRolePermissions() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRolePermissions(id);
     ctx.helper.success(ctx, result);
   }
   // 修改用户角色
-  async updateRolePermissions () {
+  async updateRolePermissions() {
     const { ctx } = this;
     const { id } = ctx.params;
     const { permissionIds } = ctx.request.body;

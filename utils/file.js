@@ -6,10 +6,10 @@ const path = require('path');
 
 /**
  * 获取文件hash名
- * @param file
- * @returns {Promise<{fileHash: string, fileName: string}>}
+ * @param {*} file 文件流
+ * @return {Promise<{fileHash: string, fileName: string}>} 返回文件hash名
  */
-const getFileHashName = async (file) => {
+const getFileHashName = async file => {
   const extension = mime.extension(file.mimeType);
   const fileHash = await hasha.fromFileSync(file.filepath, { algorithm: 'md5' });
   const fileName = `${fileHash}.${extension}`;
@@ -21,10 +21,10 @@ const getFileHashName = async (file) => {
 
 /**
  * 获取文件路径
- * @param app
- * @param fileName
- * @param folderName
- * @returns {string}
+ * @param {*} app app实例
+ * @param {string} fileName 文件名
+ * @param {string} folderName 文件夹名称
+ * @return {string} 返回文件路径
  */
 const getFilePath = (app, fileName, folderName) => {
   const uploadBasePath = app.config.upload_base_path + '/' + folderName; // 文件夹路径
@@ -42,9 +42,9 @@ const getFilePath = (app, fileName, folderName) => {
 
 /**
  * 检验文件是否已存在
- * @param filePath
- * @param fileHash
- * @returns {Promise<*>}
+ * @param {string} filePath 文件路径
+ * @param {string} fileHash 文件hash名称
+ * @return {Promise<*>} 返回是否存在该文件
  */
 const checkFileExisted = async (filePath, fileHash) => {
   let isFileExisted = existsSync(filePath);

@@ -8,11 +8,11 @@ module.exports = app => {
   const AdminRolePermissions = db.defineModel(app, 'admin_role_permissions', {
     adminPermissionId: {
       type: STRING,
-      comment: '权限id'
+      comment: '权限id',
     },
     adminRoleId: {
       type: STRING,
-      comment: '角色id'
+      comment: '角色id',
     },
   });
 

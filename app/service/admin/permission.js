@@ -5,8 +5,8 @@ const { toInt } = require('../../../utils/utils');
 
 class PermissionService extends Service {
   // 查询权限列表
-  async query ({ current = 1, pageSize = 20, name, code, status }) {
-    const { ctx, app} = this;
+  async query({ current = 1, pageSize = 20, name, code, status }) {
+    const { ctx, app } = this;
     const op = app.Sequelize.Op;
 
     const _where = {};
@@ -30,8 +30,8 @@ class PermissionService extends Service {
       limit: toInt(pageSize),
       offset: (toInt(current) - 1) * toInt(pageSize),
       where: _where,
-      order: [['createdAt', 'DESC']],
-      attributes: ['id', 'name', 'code', 'status', 'description'],
+      order: [[ 'createdAt', 'DESC' ]],
+      attributes: [ 'id', 'name', 'code', 'status', 'description' ],
       distinct: true,
     };
 
@@ -39,14 +39,14 @@ class PermissionService extends Service {
     return { data: result.rows, total: result.count };
   }
   // 创建权限
-  async create ({ code, name, description, status, createUser }) {
+  async create({ code, name, description, status, createUser }) {
     const { ctx } = this;
 
     const isHas = await ctx.model.Admin.Permission.findOne({
-      where: { code }
+      where: { code },
     });
     if (isHas) {
-      return { isOK: false, msg: '权限编码已存在' }
+      return { isOK: false, msg: '权限编码已存在' };
     }
     await ctx.model.Admin.Permission.create({ code, name, description, status, createUser });
     return {
@@ -58,7 +58,7 @@ class PermissionService extends Service {
     const { ctx, app } = this;
     const role = await ctx.model.Admin.Permission.findByPk(id);
     if (!role) {
-      return { isOK: false, msg: '权限不存在' }
+      return { isOK: false, msg: '权限不存在' };
     }
 
     const op = app.Sequelize.Op;
@@ -66,12 +66,12 @@ class PermissionService extends Service {
       where: {
         code,
         id: {
-          [op.ne]: id
-        }
-      }
+          [op.ne]: id,
+        },
+      },
     });
     if (isHas) {
-      return { isOK: false, msg: '权限编码已存在' }
+      return { isOK: false, msg: '权限编码已存在' };
     }
 
     await ctx.model.Admin.Permission.update({
@@ -91,7 +91,7 @@ class PermissionService extends Service {
   async remove(id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Permission.destroy({
-      where: { id }
+      where: { id },
     });
     return result;
   }

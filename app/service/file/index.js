@@ -2,8 +2,8 @@
 const Controller = require('egg').Controller;
 const qiniu = require('qiniu');
 const { createWriteStream, createReadStream, unlinkSync } = require('mz/fs');
-const awaitWriteStream = require("await-stream-ready").write;
-const sendToWormhole = require("stream-wormhole");
+const awaitWriteStream = require('await-stream-ready').write;
+const sendToWormhole = require('stream-wormhole');
 const { getQiniuUploadToken } = require('../../../utils/qiniu');
 const { getCosToken } = require('../../../utils/cos');
 const { getFileHashName, getFilePath, checkFileExisted } = require('../../../utils/file');
@@ -119,7 +119,7 @@ class FileController extends Controller {
           Region: app.config.cos.Region,
           Key: fileName,
           FilePath: localFile,
-        }, function (err, res) {
+        }, function(err, res) {
           unlinkSync(localFile);
           if (err || res.statusCode !== 200) {
             reject(err || res);
@@ -129,7 +129,7 @@ class FileController extends Controller {
             resolve(previewUrl);
           }
         });
-      })
+      });
     } catch (e) {
       logger.info('cos upload write fail err: %s ', e);
       await sendToWormhole(stream);
@@ -150,7 +150,7 @@ class FileController extends Controller {
           Region: app.config.cos.Region,
           Key: fileName,
           Output: createWriteStream(localFile),
-        }, function (err, res) {
+        }, function(err, res) {
           if (err || res.statusCode !== 200) {
             reject(err || res);
           } else {
@@ -158,7 +158,7 @@ class FileController extends Controller {
             resolve(res);
           }
         });
-      })
+      });
     } catch (e) {
       logger.info('cos preview fail err: %s ', e);
       return e;

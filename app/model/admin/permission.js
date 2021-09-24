@@ -30,7 +30,7 @@ module.exports = app => {
     createUser: {
       type: STRING,
       comment: '创建人',
-    }
+    },
   });
   // AdminPermission.sync({ alter: true });
   return AdminPermission;

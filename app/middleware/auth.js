@@ -1,3 +1,4 @@
+'use strict';
 module.exports = () => {
   return async function auth(ctx, next) {
     const currentUser = ctx.session.currentUser;
@@ -14,8 +15,8 @@ module.exports = () => {
     } else {
       ctx.status = 401;
       ctx.body = {
-        msg: '登录已过期'
+        msg: '登录已过期',
       };
     }
-  }
+  };
 };

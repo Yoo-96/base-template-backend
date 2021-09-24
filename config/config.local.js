@@ -2,10 +2,7 @@
 
 'use strict';
 
-/**
- * @param {Egg.EggAppInfo} appInfo app info
- */
-module.exports = appInfo => {
+module.exports = () => {
   const config = {};
 
   config.sequelize = {

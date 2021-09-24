@@ -15,11 +15,11 @@ class PermissionController extends Controller {
 
     if (result) {
       return ctx.helper.success(ctx, result);
-    } else {
-      ctx.helper.fail(ctx, {
-        msg: '获取权限列表失败'
-      });
     }
+    ctx.helper.fail(ctx, {
+      msg: '获取权限列表失败',
+    });
+
   }
   async create() {
     const { ctx } = this;
@@ -34,7 +34,7 @@ class PermissionController extends Controller {
       name,
       description,
       status,
-      createUser: ctx.session.currentUser.id
+      createUser: ctx.session.currentUser.id,
     };
     const { isOK, msg } = await ctx.service.admin.permission.create(data);
     if (!isOK) {
@@ -42,7 +42,7 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  async update () {
+  async update() {
     const { ctx } = this;
     const {
       id,
@@ -65,7 +65,7 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  async remove () {
+  async remove() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.permission.remove(id);
