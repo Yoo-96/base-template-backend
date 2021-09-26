@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: crypto加密公共函数
+ */
 'use strict';
 const crypto = require('crypto');
 

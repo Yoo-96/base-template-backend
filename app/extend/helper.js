@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 接口异常处理
+ */
 'use strict';
 
 module.exports = {

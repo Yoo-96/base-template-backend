@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 权限模块
+ */
 'use strict';
 const Service = require('egg').Service;
 const { toInt } = require('../../../utils/utils');

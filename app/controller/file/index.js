@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 文件模块
+ */
 'use strict';
 const Controller = require('egg').Controller;
 const mime = require('mime-types');
@@ -6,6 +12,7 @@ const { readFileSync, unlinkSync } = require('mz/fs');
 const path = require('path');
 
 class FileController extends Controller {
+  // 图片上传
   async uploadImage() {
     const { ctx } = this;
     const file = ctx.request.files[0];

@@ -1,7 +1,12 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 用户表 User模型
+ */
 'use strict';
 const db = require('../../../utils/db.js');
 
-// User模型
 module.exports = app => {
   const { STRING, DATE, TINYINT } = app.Sequelize;
 

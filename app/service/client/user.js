@@ -1,6 +1,11 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 客户端 - 用户模块
+ */
 'use strict';
 const Service = require('egg').Service;
-const { toInt } = require('../../../utils/utils');
 
 class UserService extends Service {
   // 创建用户
@@ -53,7 +58,7 @@ class UserService extends Service {
     const { id } = ctx.session.currentUser;
     return this.findUserById(id);
   }
-  //
+  // 根据id查询用户详情
   async findUserById(id) {
     const { ctx } = this;
     return await ctx.model.Client.User.findOne({

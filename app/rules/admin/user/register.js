@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 用户注册参数校验
+ */
 'use strict';
 
 const rule = {

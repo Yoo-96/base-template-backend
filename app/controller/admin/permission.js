@@ -1,7 +1,14 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 权限模块
+ */
 'use strict';
 const Controller = require('egg').Controller;
 
 class PermissionController extends Controller {
+  // 权限列表
   async query() {
     const { ctx } = this;
     const {
@@ -19,8 +26,8 @@ class PermissionController extends Controller {
     ctx.helper.fail(ctx, {
       msg: '获取权限列表失败',
     });
-
   }
+  // 创建权限
   async create() {
     const { ctx } = this;
     const {
@@ -42,6 +49,7 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
+  // 修改权限
   async update() {
     const { ctx } = this;
     const {
@@ -65,6 +73,7 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
+  // 删除权限
   async remove() {
     const { ctx } = this;
     const { id } = ctx.params;

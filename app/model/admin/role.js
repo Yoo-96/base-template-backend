@@ -1,7 +1,12 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 角色表 Role模型
+ */
 'use strict';
 const db = require('../../../utils/db.js');
 
-// Role模型
 module.exports = app => {
   const { STRING, TINYINT } = app.Sequelize;
 

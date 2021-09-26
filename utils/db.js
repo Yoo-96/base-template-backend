@@ -1,5 +1,10 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 数据模型默认配置
+ */
 'use strict';
-// 数据模型默认配置
 const uuidv1 = require('uuid/v1');
 
 function generateUUID() {

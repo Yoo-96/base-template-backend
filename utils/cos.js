@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 腾讯COS
+ */
 'use strict';
 const COS = require('cos-nodejs-sdk-v5');
 

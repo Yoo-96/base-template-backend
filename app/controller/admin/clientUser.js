@@ -10,9 +10,9 @@ const Controller = require('egg').Controller;
 class ClientUserController extends Controller {
   // 用户列表
   async query() {
-    const {ctx} = this;
-    const {currentPage = 1, pageSize = 20} = ctx.query;
-    const result = await ctx.service.admin.clientUser.query({pageSize, currentPage});
+    const { ctx } = this;
+    const { currentPage = 1, pageSize = 20 } = ctx.query;
+    const result = await ctx.service.admin.clientUser.query({ pageSize, currentPage });
 
     if (result) {
       return ctx.helper.success(ctx, result);

@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 客户端 - 用户模块
+ */
 'use strict';
 const Controller = require('egg').Controller;
 const encryption = require('../../../utils/encryption');

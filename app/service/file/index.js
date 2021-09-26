@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 文件模块
+ */
 'use strict';
 const Controller = require('egg').Controller;
 const qiniu = require('qiniu');

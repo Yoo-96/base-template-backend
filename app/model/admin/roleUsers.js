@@ -1,7 +1,12 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 角色用户中间表 RoleUsers模型
+ */
 'use strict';
 const db = require('../../../utils/db.js');
 
-// RoleUsers模型
 module.exports = app => {
   const { STRING } = app.Sequelize;
 

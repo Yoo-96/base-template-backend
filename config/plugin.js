@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 系统插件配置
+ */
 'use strict';
 
 /** @type Egg.EggPlugin */

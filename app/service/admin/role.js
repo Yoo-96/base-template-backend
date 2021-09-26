@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 角色模块
+ */
 'use strict';
 const Service = require('egg').Service;
 const { toInt } = require('../../../utils/utils');
@@ -96,6 +102,7 @@ class RoleService extends Service {
     });
     return result;
   }
+  // 获取角色关联用户
   async getRoleUsers(id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Role.findOne({

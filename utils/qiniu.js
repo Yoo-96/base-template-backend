@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 七牛
+ */
 'use strict';
 const qiniu = require('qiniu');
 

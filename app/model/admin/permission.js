@@ -1,7 +1,12 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 权限表 Permission模型
+ */
 'use strict';
 const db = require('../../../utils/db.js');
 
-// Permission模型
 module.exports = app => {
   const { STRING, TINYINT } = app.Sequelize;
 

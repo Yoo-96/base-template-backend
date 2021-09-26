@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 公共方法
+ */
 'use strict';
 const _ = require('lodash');
 

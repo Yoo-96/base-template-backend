@@ -1,4 +1,9 @@
-/* eslint valid-jsdoc: "off" */
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 系统本地配置文件
+ */
 
 'use strict';
 

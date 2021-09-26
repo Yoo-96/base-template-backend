@@ -1,7 +1,14 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 管理端 - 角色模块
+ */
 'use strict';
 const Controller = require('egg').Controller;
 
 class RoleController extends Controller {
+  // 角色列表
   async query() {
     const { ctx } = this;
     const {
@@ -19,8 +26,8 @@ class RoleController extends Controller {
     ctx.helper.fail(ctx, {
       msg: '获取角色列表失败',
     });
-
   }
+  // 创建角色
   async create() {
     const { ctx } = this;
     const {
@@ -42,6 +49,7 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
+  // 修改角色
   async update() {
     const { ctx } = this;
     const {
@@ -65,6 +73,7 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
+  // 删除角色
   async remove() {
     const { ctx } = this;
     const { id } = ctx.params;
@@ -101,7 +110,6 @@ class RoleController extends Controller {
     const result = await ctx.service.admin.role.updateRolePermissions(id, permissionIds);
     ctx.helper.success(ctx, result);
   }
-
 }
 
 module.exports = RoleController;

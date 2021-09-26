@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 文件公共方法
+ */
 'use strict';
 const { existsSync, mkdirSync } = require('mz/fs');
 const hasha = require('hasha');
