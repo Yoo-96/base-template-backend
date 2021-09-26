@@ -5,7 +5,7 @@ const db = require('../../../utils/db.js');
 module.exports = app => {
   const { STRING, DATE, TINYINT } = app.Sequelize;
 
-  const User = db.defineModel(app, 'admin_users', {
+  const User = db.defineModel(app, 'client_users', {
     // id: { type: CHAR, unique: true, primaryKey: true }, // 用户id
     account: {
       type: STRING,
@@ -31,14 +31,9 @@ module.exports = app => {
       type: STRING,
       comment: '用户邮箱',
     },
-    isAdmin: {
-      type: TINYINT,
-      defaultValue: 0,
-      comment: '是否超管, 0: 否, 1:是',
-    },
     isOpen: {
       type: TINYINT,
-      defaultValue: 0,
+      defaultValue: 1,
       comment: '是否启用, 0: 禁用, 1:启用',
     },
     isDelete: {
@@ -55,12 +50,6 @@ module.exports = app => {
       comment: '最后登录ip',
     },
   });
-
-  User.associate = () => {
-    User.belongsToMany(app.model.Admin.Role, {
-      through: app.model.Admin.RoleUsers,
-    });
-  };
 
   User.sync({ alter: true });
   return User;
