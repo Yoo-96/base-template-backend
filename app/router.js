@@ -34,7 +34,7 @@ module.exports = app => {
 
   // 客户端用户模块
   router.get('/api/v1/admin/clientUser', protect('LIST_CLIENT_USER'), controller.admin.clientUser.query); // 用户列表
-  router.patch('/api/v1/admin/clientUser/:id/status', protect('UPDATE_CLIENT_USER_STATUS'), controller.admin.clientUser.updateUserStatus); // 用户列表
+  router.patch('/api/v1/admin/clientUser/:id/status', protect('UPDATE_CLIENT_USER_STATUS'), controller.admin.clientUser.updateUserStatus); // 启用、禁用客户端用户
 
   // ---------------------- 管理端结束 ----------------------
 

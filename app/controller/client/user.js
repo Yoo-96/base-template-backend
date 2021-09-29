@@ -1,4 +1,5 @@
 /**
+ * @Controller 客户端-用户模块
  *@BelongsProject: base-template-backend
  *@Author: yoo
  *@CreateTime:
@@ -10,7 +11,13 @@ const encryption = require('../../../utils/encryption');
 
 
 class UserController extends Controller {
-  // 注册用户
+  /**
+   * @router post /api/v1/client/user
+   * @summary 注册用户
+   * @description 注册用户
+   * @request body clientUserCreateRequest *body
+   * @response 200 clientUserCreateResponse
+   */
   async register() {
     const { ctx, app } = this;
     const { mobile, password } = ctx.request.body;
@@ -30,7 +37,13 @@ class UserController extends Controller {
     });
   }
 
-  // 用户登录
+  /**
+   * @router post /api/v1/client/user/login
+   * @summary 用户登录
+   * @description 用户登录
+   * @request body clientUserLoginRequest *body
+   * @response 200 clientUserLoginResponse
+   */
   async login() {
     const { ctx } = this;
     const { mobile, password } = ctx.request.body;
@@ -56,7 +69,12 @@ class UserController extends Controller {
     });
   }
 
-  // 用户登出
+  /**
+   * @router get /api/v1/client/user/logout
+   * @summary 用户登出
+   * @description 用户登出
+   * @response 200 clientUserLogoutResponse
+   */
   async logout() {
     const { ctx } = this;
     ctx.session = null;
@@ -65,7 +83,12 @@ class UserController extends Controller {
     });
   }
 
-  // 获取当前用户信息
+  /**
+   * @router get /api/v1/client/user/getCurrentUser
+   * @summary 获取当前用户信息
+   * @description 获取当前用户信息
+   * @response 200 clientUserCurrentUserResponse
+   */
   async getCurrentUser() {
     const { ctx } = this;
     const currentUser = await ctx.service.client.user.getCurrentUser();

@@ -17,9 +17,10 @@ module.exports = () => {
       '/api/v1/client/user/login', // 客户端 - 登录接口
       '/api/v1/client/user/register', // 管理端 - 注册接口
     ];
+    const isSwagger = ctx.request.path.indexOf('swagger') > -1;
     const isSkipPath = whiteList.includes(ctx.request.path);
 
-    if (currentUser || isSkipPath) {
+    if (currentUser || isSkipPath || isSwagger) {
       await next();
     } else {
       ctx.status = 401;

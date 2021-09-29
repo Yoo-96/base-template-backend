@@ -1,4 +1,5 @@
 /**
+ * @Controller 管理端-权限模块
  *@BelongsProject: base-template-backend
  *@Author: yoo
  *@CreateTime:
@@ -8,7 +9,14 @@
 const Controller = require('egg').Controller;
 
 class PermissionController extends Controller {
-  // 权限列表
+  /**
+   * @router get /api/v1/admin/permission
+   * @summary 权限列表
+   * @description 用户列表
+   * @request query integer *currentPage 当前页码
+   * @request query integer *pageSize 分页条数
+   * @response 200 adminPermissionQueryResponse
+   */
   async query() {
     const { ctx } = this;
     const {
@@ -27,7 +35,14 @@ class PermissionController extends Controller {
       msg: '获取权限列表失败',
     });
   }
-  // 创建权限
+
+  /**
+   * @router post /api/v1/admin/permission
+   * @summary 创建权限
+   * @description 创建权限
+   * @request body adminPermissionCreateRequest *body
+   * @response 200 baseResponse
+   */
   async create() {
     const { ctx } = this;
     const {
@@ -49,7 +64,13 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  // 修改权限
+  /**
+   * @router put /api/v1/admin/permissions
+   * @summary 修改权限
+   * @description 修改权限
+   * @request body adminPermissionUpdateRequest *body
+   * @response 200 baseResponse
+   */
   async update() {
     const { ctx } = this;
     const {
@@ -73,7 +94,13 @@ class PermissionController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  // 删除权限
+  /**
+   * @router delete /api/v1/admin/permissions/{id}
+   * @summary 删除权限
+   * @description 删除权限
+   * @request path string *id 权限ID
+   * @response 200 baseResponse
+   */
   async remove() {
     const { ctx } = this;
     const { id } = ctx.params;

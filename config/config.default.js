@@ -107,6 +107,7 @@ module.exports = appInfo => {
   // 腾讯cos图片预览接口
   config.image_preview_cos_url = 'http://localhost:7001/api/v1/file/cImagePreview';
 
+  // 文件限制
   config.multipart = {
     mode: 'file',
     fileSize: '100mb',
@@ -147,6 +148,24 @@ module.exports = appInfo => {
 
       return whitelist.includes(path.extname(filename).toLowerCase());
     },
+  };
+
+
+  // swaggerdoc 插件配置
+  config.swaggerdoc = {
+    dirScanner: './app/controller', // 指定swaggerdoc从哪个目录开始检索,
+    apiInfo: {
+      title: 'xxx项目接口',
+      description: 'xxx项目接口 swagger-ui for egg',
+      version: '1.0.0',
+    }, //接口文档主要信息、描述、版本号
+    schemes: ['http', 'https'], //协议
+    consumes: ['application/json'], //输出方式
+    produces: ['application/json'],
+    enableSecurity: false,
+    //enableValidate:true,// 是否开启参数校验（很遗憾虽然有这个api，但是功能没有实现）
+    routerMap: true, // 是否自动注册路由（很香）
+    enable: true,
   };
 
   return {

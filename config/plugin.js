@@ -33,4 +33,9 @@ module.exports = {
     enable: true,
     package: 'egg-session-redis',
   },
+
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
+  }
 };

@@ -1,8 +1,9 @@
 /**
+ * @Controller 附件模块
  *@BelongsProject: base-template-backend
  *@Author: yoo
  *@CreateTime:
- *@Description: 文件模块
+ *@Description: 附件模块
  */
 'use strict';
 const Controller = require('egg').Controller;
@@ -12,7 +13,13 @@ const { readFileSync, unlinkSync } = require('mz/fs');
 const path = require('path');
 
 class FileController extends Controller {
-  // 图片上传
+  /**
+   * @router post /api/v1/file/uploadImage
+   * @summary 图片上传
+   * @description 图片上传
+   * @request formData file *file 文件流
+   * @response 200 imageUploadResponse
+   */
   async uploadImage() {
     const { ctx } = this;
     const file = ctx.request.files[0];
@@ -26,15 +33,20 @@ class FileController extends Controller {
     }
 
     // const result = await ctx.service.file.index.uploadToQiniu(file);
-    const result = await ctx.service.file.index.uploadToCOS(file);
-    // const result = await ctx.service.file.index.uploadToLocal(file, 'local/images');
+    // const result = await ctx.service.file.index.uploadToCOS(file);
+    const result = await ctx.service.file.index.uploadToLocal(file, 'local/images');
     if (result) {
       ctx.helper.success(ctx, result);
     } else {
       return ctx.helper.fail(ctx, { msg: '上传失败，请稍后重试！' });
     }
   }
-  // 本地图片预览
+  /**
+   * @router post /api/v1/file/imagePreview
+   * @summary 图片预览
+   * @description 图片预览
+   * @request query string *file 文件名
+   */
   async imagePreview() {
     const { ctx, app } = this;
     const { file } = ctx.query;

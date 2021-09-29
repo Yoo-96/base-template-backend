@@ -1,4 +1,5 @@
 /**
+ * @Controller 管理端-角色模块
  *@BelongsProject: base-template-backend
  *@Author: yoo
  *@CreateTime:
@@ -8,7 +9,14 @@
 const Controller = require('egg').Controller;
 
 class RoleController extends Controller {
-  // 角色列表
+  /**
+   * @router get /api/v1/admin/role
+   * @summary 角色列表
+   * @description 角色列表
+   * @request query integer *currentPage 当前页码
+   * @request query integer *pageSize 分页条数
+   * @response 200 adminRoleQueryResponse
+   */
   async query() {
     const { ctx } = this;
     const {
@@ -27,7 +35,13 @@ class RoleController extends Controller {
       msg: '获取角色列表失败',
     });
   }
-  // 创建角色
+  /**
+   * @router post /api/v1/admin/role
+   * @summary 创建角色
+   * @description 创建角色
+   * @request body adminRoleCreateRequest *body
+   * @response 200 baseResponse
+   */
   async create() {
     const { ctx } = this;
     const {
@@ -49,7 +63,13 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  // 修改角色
+  /**
+   * @router put /api/v1/admin/role
+   * @summary 修改角色
+   * @description 修改角色
+   * @request body adminRoleUpdateRequest *body
+   * @response 200 baseResponse
+   */
   async update() {
     const { ctx } = this;
     const {
@@ -73,21 +93,39 @@ class RoleController extends Controller {
     }
     ctx.helper.success(ctx, 'success');
   }
-  // 删除角色
+  /**
+   * @router delete /api/v1/admin/role/{id}
+   * @summary 删除角色
+   * @description 删除角色
+   * @request path string *id 角色ID
+   * @response 200 baseResponse
+   */
   async remove() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.remove(id);
-    ctx.helper.success(ctx, 'success', result);
+    ctx.helper.success(ctx, 'success');
   }
-  // 查询角色用户
+  /**
+   * @router get /api/v1/admin/role/{id}/users
+   * @summary 查询角色用户
+   * @description 查询角色用户
+   * @request path string *id 用户ID
+   * @response 200 adminRoleUserResponse
+   */
   async getRoleUsers() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRoleUsers(id);
     ctx.helper.success(ctx, result);
   }
-  // 修改用户角色
+  /**
+   * @router put /api/v1/admin/role/{id}/permissions
+   * @summary 修改用户角色
+   * @description 修改用户角色
+   * @request body adminUpdateRoleUserRequest *body
+   * @response 200 baseResponse
+   */
   async updateRoleUsers() {
     const { ctx } = this;
     const { id } = ctx.params;
@@ -95,14 +133,27 @@ class RoleController extends Controller {
     const result = await ctx.service.admin.role.updateRoleUsers(id, userIds);
     ctx.helper.success(ctx, result);
   }
-  // 查询角色用户
+  /**
+   * @router get /api/v1/admin/role/{id}/permissions
+   * @summary 查询角色权限
+   * @description 查询角色权限
+   * @request path string *id 用户ID
+   * @response 200 adminRolePermissionsResponse
+   */
   async getRolePermissions() {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRolePermissions(id);
     ctx.helper.success(ctx, result);
   }
-  // 修改用户角色
+  /**
+   * @router put /api/v1/admin/role/{id}/permissions
+   * @summary 修改角色权限
+   * @description 修改角色权限
+   * @request path string *id 用户ID
+   * @request body adminUpdateRolePermissionsRequest *body
+   * @response 200 baseResponse
+   */
   async updateRolePermissions() {
     const { ctx } = this;
     const { id } = ctx.params;
