@@ -19,6 +19,8 @@ module.exports = app => {
       type: STRING,
       comment: '角色id',
     },
+  }, {
+    comment: '管理端-角色权限中间表'
   });
 
   // AdminRolePermissions.sync({ alter: true });

@@ -36,6 +36,8 @@ module.exports = app => {
       type: STRING,
       comment: '创建人',
     },
+  }, {
+    comment: '管理端-角色表'
   });
 
   Role.associate = () => {

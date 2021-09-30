@@ -14,6 +14,39 @@ const path = require('path');
 
 class FileController extends Controller {
   /**
+   * @router post /api/v1/file/uploadFile
+   * @summary 附件上传
+   * @description 附件上传
+   * @request formData file *file 文件流
+   * @response 200 imageUploadResponse
+   */
+  async uploadFile () {
+    const { ctx } = this;
+    const file = ctx.request.files[0];
+
+    const mimeType = file.mimeType;
+    const extension = mime.extension(mimeType);
+
+    const fileResult = await ctx.service.file.index.uploadToLocal(file, 'local/attachments'); // 上传本地磁盘
+
+    if (fileResult) {
+      const data = {
+        fileName: '',
+        hashFileName: '',
+        mimeType: '',
+        extension,
+        size: '',
+        url: '',
+        diskPath: '',
+        businessId: '',
+        createUser: '',
+      }
+    } else {
+      return ctx.helper.fail(ctx, { msg: '上传失败，请稍后重试！' });
+    }
+  }
+
+  /**
    * @router post /api/v1/file/uploadImage
    * @summary 图片上传
    * @description 图片上传
@@ -21,7 +54,7 @@ class FileController extends Controller {
    * @response 200 imageUploadResponse
    */
   async uploadImage() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const file = ctx.request.files[0];
 
     const extension = mime.extension(file.mimeType);
@@ -32,11 +65,14 @@ class FileController extends Controller {
       return ctx.helper.fail(ctx, { msg: '请上传/jpg/jpeg/png/gif/bmp格式' });
     }
 
-    // const result = await ctx.service.file.index.uploadToQiniu(file);
-    // const result = await ctx.service.file.index.uploadToCOS(file);
-    const result = await ctx.service.file.index.uploadToLocal(file, 'local/images');
+    // const result = await ctx.service.file.index.uploadToQiniu(file); // 上传七牛云
+    // const result = await ctx.service.file.index.uploadToCOS(file); // 上传腾讯cos
+    const result = await ctx.service.file.index.uploadImageToLocal(file, 'local/images'); // 上传本地磁盘
     if (result) {
-      ctx.helper.success(ctx, result);
+      const fileName = result.fileName;
+      const previewUrl = app.config.image_preview_url + '?file=' + fileName; // 图片预览地址
+      const data = { fileName, previewUrl };
+      ctx.helper.success(ctx, data);
     } else {
       return ctx.helper.fail(ctx, { msg: '上传失败，请稍后重试！' });
     }

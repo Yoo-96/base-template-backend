@@ -59,6 +59,8 @@ module.exports = app => {
       type: STRING,
       comment: '最后登录ip',
     },
+  }, {
+    comment: '管理端-用户表'
   });
 
   User.associate = () => {

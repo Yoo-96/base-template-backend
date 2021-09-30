@@ -19,6 +19,8 @@ module.exports = app => {
       type: STRING,
       comment: '角色id',
     },
+  }, {
+    comment: '管理端-角色用户中间表'
   });
   // AdminRoleUsers.sync({ alter: true });
   return AdminRoleUsers;
