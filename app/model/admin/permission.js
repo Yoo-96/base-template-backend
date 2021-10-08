@@ -39,6 +39,6 @@ module.exports = app => {
   }, {
     comment: '管理端-权限表',
   });
-  // AdminPermission.sync({ alter: true });
+  AdminPermission.sync({ alter: true });
   return AdminPermission;
 };
