@@ -12,7 +12,9 @@ const sendToWormhole = require('stream-wormhole');
 const { readFileSync, unlinkSync } = require('mz/fs');
 const path = require('path');
 const utf8 = require('utf8');
+const Jimp = require('jimp');
 const { AttachmentLogEnums } = require('../../../enums/AttachmentLogEnums');
+const { getFilePath } = require('../../../utils/file');
 
 class FileController extends Controller {
   /**
@@ -127,14 +129,34 @@ class FileController extends Controller {
    */
   async imagePreview () {
     const { ctx, app } = this;
-    const { file } = ctx.query;
+    let { file, type } = ctx.query;
 
-    const uploadBasePath = app.config.upload_base_path + '/local/images';
-    const filePath = path.join(uploadBasePath, file);
+    const uploadBasePath = 'local/images';
+    const filePath = getFilePath(app, file, 'local/images');
 
     try {
       const mimeType = mime.lookup(filePath);
-      const file = readFileSync(filePath);
+
+      if (type === 'thumbnail') {
+        const thumbnailFilePath = getFilePath(app, file, `${uploadBasePath}/thumbnail`);
+
+        file = readFileSync(filePath);
+
+        const height = 200;
+        const width = 200;
+        let img = await Jimp.read(file);
+        const originalHeight = img.getHeight();
+        const originalWidth = img.getWidth();
+        img = originalWidth > originalHeight ? img.resize(width, Jimp.AUTO) : img.resize(Jimp.AUTO, height);
+
+        img.quality(100) // set JPEG quality
+          .write(thumbnailFilePath); // save
+
+        file = await img.getBufferAsync(Jimp.MIME_PNG);
+      } else {
+        file = readFileSync(filePath);
+      }
+
       ctx.set('content-type', mimeType);
       ctx.body = file;
     } catch (error) {

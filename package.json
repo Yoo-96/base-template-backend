@@ -19,6 +19,7 @@
     "egg-validate": "^2.0.2",
     "egg-validate-plus": "^1.1.6",
     "hasha": "^5.2.1",
+    "jimp": "^0.16.1",
     "mime-types": "^2.1.27",
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
