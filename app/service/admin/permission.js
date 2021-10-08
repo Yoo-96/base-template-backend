@@ -11,7 +11,7 @@ const { toInt } = require('../../../utils/utils');
 
 class PermissionService extends Service {
   // 查询权限列表
-  async query({ current = 1, pageSize = 20, name, code, status }) {
+  async query ({ current = 1, pageSize = 20, name, code, status }) {
     const { ctx, app } = this;
     const op = app.Sequelize.Op;
 
@@ -45,7 +45,7 @@ class PermissionService extends Service {
     return { data: result.rows, total: result.count };
   }
   // 创建权限
-  async create({ code, name, description, status, createUser }) {
+  async create ({ code, name, description, status, createUser }) {
     const { ctx } = this;
 
     const isHas = await ctx.model.Admin.Permission.findOne({
@@ -60,7 +60,7 @@ class PermissionService extends Service {
     };
   }
   // 编辑权限
-  async update({ id, code, name, description, status, updateUser }) {
+  async update ({ id, code, name, description, status, updateUser }) {
     const { ctx, app } = this;
     const role = await ctx.model.Admin.Permission.findByPk(id);
     if (!role) {
@@ -94,7 +94,7 @@ class PermissionService extends Service {
     };
   }
   // 删除权限
-  async remove(id) {
+  async remove (id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Permission.destroy({
       where: { id },

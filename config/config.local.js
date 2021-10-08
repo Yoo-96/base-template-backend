@@ -30,7 +30,7 @@ module.exports = appInfo => {
     timezone: '+08:00', // 保存为本地时区
     dialectOptions: {
       dateStrings: true,
-      typeCast(field, next) {
+      typeCast (field, next) {
         // for reading from database
         if (field.type === 'DATETIME') {
           return field.string();

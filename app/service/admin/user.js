@@ -10,7 +10,7 @@ const { toInt } = require('../../../utils/utils');
 
 class UserService extends Service {
   // 创建用户
-  async register(mobile, password) {
+  async register (mobile, password) {
     const { ctx } = this;
     const params = { mobile, password, account: mobile };
 
@@ -35,7 +35,7 @@ class UserService extends Service {
     };
   }
   // 用户登录
-  async login(mobile, password) {
+  async login (mobile, password) {
     const { ctx } = this;
     const query = {
       where: {
@@ -54,13 +54,13 @@ class UserService extends Service {
   }
 
   // 获取当前用户信息
-  async getCurrentUser() {
+  async getCurrentUser () {
     const { ctx } = this;
     const { id } = ctx.session.currentUser;
     return this.findUserById(id);
   }
   // 根据id查询用户详情，包含用户角色权限
-  async findUserById(id) {
+  async findUserById (id) {
     const { ctx } = this;
     return await ctx.model.Admin.User.findOne({
       where: { id },
@@ -79,7 +79,7 @@ class UserService extends Service {
   }
 
   // 查询用户列表
-  async query({ page = 1, size = 10 }) {
+  async query ({ page = 1, size = 10 }) {
     const { ctx } = this;
 
     const query = {
@@ -94,7 +94,7 @@ class UserService extends Service {
     return { data: result.rows, total: result.count };
   }
   // 启用、禁用用户
-  async updateUserStatus(id) {
+  async updateUserStatus (id) {
     const { ctx } = this;
     const user = await ctx.model.Admin.User.findOne({ where: { id } });
     await ctx.model.Admin.User.update({

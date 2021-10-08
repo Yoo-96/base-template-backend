@@ -55,7 +55,7 @@ module.exports = app => {
       comment: '最后登录ip',
     },
   }, {
-    comment: '客户端-用户表'
+    comment: '客户端-用户表',
   });
 
   User.sync({ alter: true });

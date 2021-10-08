@@ -5,6 +5,7 @@
  *@Description: 附件模块
  */
 'use strict';
+
 const Service = require('egg').Service;
 
 class AttachmentsService extends Service {

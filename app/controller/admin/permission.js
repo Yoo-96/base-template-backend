@@ -17,7 +17,7 @@ class PermissionController extends Controller {
    * @request query integer *pageSize 分页条数
    * @response 200 adminPermissionQueryResponse
    */
-  async query() {
+  async query () {
     const { ctx } = this;
     const {
       current = 1,
@@ -43,7 +43,7 @@ class PermissionController extends Controller {
    * @request body adminPermissionCreateRequest *body
    * @response 200 baseResponse
    */
-  async create() {
+  async create () {
     const { ctx } = this;
     const {
       code,
@@ -71,7 +71,7 @@ class PermissionController extends Controller {
    * @request body adminPermissionUpdateRequest *body
    * @response 200 baseResponse
    */
-  async update() {
+  async update () {
     const { ctx } = this;
     const {
       id,
@@ -101,7 +101,7 @@ class PermissionController extends Controller {
    * @request path string *id 权限ID
    * @response 200 baseResponse
    */
-  async remove() {
+  async remove () {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.permission.remove(id);

@@ -12,7 +12,7 @@ module.exports = {
    * @param {Object} ctx - context
    * @param {*} data - 返回的数据
    */
-  success(ctx, data) {
+  success (ctx, data) {
     ctx.body = data;
     ctx.status = 200;
   },
@@ -22,7 +22,7 @@ module.exports = {
    * @param {*} ctx - context
    * @param {Object} data - 返回的数据
    */
-  fail(ctx, data) {
+  fail (ctx, data) {
     ctx.body = data;
     ctx.status = 400;
   },

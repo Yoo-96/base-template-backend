@@ -19,7 +19,7 @@ class UserController extends Controller {
    * @request query integer *pageSize 分页条数
    * @response 200 adminUserQueryResponse
    */
-  async query() {
+  async query () {
     const { ctx } = this;
     const { currentPage = 1, pageSize = 20 } = ctx.query;
     const result = await ctx.service.admin.user.query({ pageSize, currentPage });
@@ -39,7 +39,7 @@ class UserController extends Controller {
    * @request body adminUserCreateRequest *body
    * @response 200 adminUserCreateResponse
    */
-  async register() {
+  async register () {
     const { ctx, app } = this;
     const { mobile, password } = ctx.request.body;
 
@@ -65,7 +65,7 @@ class UserController extends Controller {
    * @request body adminUserLoginRequest *body
    * @response 200 adminUserLoginResponse
    */
-  async login() {
+  async login () {
     const { ctx } = this;
     const { mobile, password } = ctx.request.body;
 
@@ -96,7 +96,7 @@ class UserController extends Controller {
    * @description 用户登出
    * @response 200 adminUserLogoutResponse
    */
-  async logout() {
+  async logout () {
     const { ctx } = this;
     ctx.session = null;
     return ctx.helper.success(ctx, {
@@ -110,7 +110,7 @@ class UserController extends Controller {
    * @description 获取当前用户信息
    * @response 200 adminUserCurrentUserResponse
    */
-  async getCurrentUser() {
+  async getCurrentUser () {
     const { ctx } = this;
     const currentUser = await ctx.service.admin.user.getCurrentUser();
     if (!currentUser) {
@@ -128,7 +128,7 @@ class UserController extends Controller {
    * @request path string *id 用户ID
    * @response 200 baseResponse
    */
-  async updateUserStatus() {
+  async updateUserStatus () {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.user.updateUserStatus(id);

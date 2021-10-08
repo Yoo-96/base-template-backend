@@ -4,6 +4,7 @@
  *@CreateTime: 2021-09-29 14:31
  *@Description: 客户端 - 用户管理 请求体和响应体
  */
+'use strict';
 
 module.exports = {
   // 创建用户请求体
@@ -36,13 +37,12 @@ module.exports = {
     data: {
       type: 'string',
       example: {
-        "account": "账号",
-        "mobile": "手机号",
-        "userName": "用户名",
-        "avatar": "头像",
-        "email": "邮箱",
-      }
-    }
+        account: '账号',
+        mobile: '手机号',
+        userName: '用户名',
+        avatar: '头像',
+        email: '邮箱',
+      },
+    },
   },
-
 };

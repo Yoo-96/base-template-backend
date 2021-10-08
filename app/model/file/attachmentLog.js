@@ -4,6 +4,7 @@
  *@CreateTime: 2021-09-30 09:56
  *@Description:  附件表 AttachmentLog模型
  */
+'use strict';
 
 const db = require('../../../utils/db.js');
 
@@ -24,7 +25,7 @@ module.exports = app => {
       comment: '创建人',
     },
   }, {
-    comment: '附件操作日志表'
+    comment: '附件操作日志表',
   });
 
   AttachmentLog.sync({ alter: true });

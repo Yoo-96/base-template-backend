@@ -4,6 +4,8 @@
  *@CreateTime: 2021-09-29 14:38
  *@Description: 附件管理 请求体和响应体
  */
+'use strict';
+
 module.exports = {
   // 图片上传响应体
   imageUploadResponse: {

@@ -4,6 +4,7 @@
  *@CreateTime: 2021-09-30 09:24
  *@Description: 附件表 Attachment模型
  */
+'use strict';
 
 const db = require('../../../utils/db.js');
 
@@ -52,7 +53,7 @@ module.exports = app => {
       comment: '最后更新人',
     },
   }, {
-    comment: '附件表'
+    comment: '附件表',
   });
 
   Attachment.sync({ alter: true });

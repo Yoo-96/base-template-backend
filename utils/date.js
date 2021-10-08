@@ -41,7 +41,7 @@ const getDate = () => {
  * @returns {string} 返回完整年月日
  */
 const getCurrentDate = (separator = '') => {
-  return `${getYear()}${separator}${getMonth()}${separator}${getDate()}`
+  return `${getYear()}${separator}${getMonth()}${separator}${getDate()}`;
 };
 
 const getTimestamp = () => {

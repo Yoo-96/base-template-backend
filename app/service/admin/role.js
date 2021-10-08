@@ -11,7 +11,7 @@ const { toInt } = require('../../../utils/utils');
 
 class RoleService extends Service {
   // 查询角色列表
-  async query({ current = 1, pageSize = 20, name, code, status }) {
+  async query ({ current = 1, pageSize = 20, name, code, status }) {
     const { ctx, app } = this;
     const op = app.Sequelize.Op;
 
@@ -45,7 +45,7 @@ class RoleService extends Service {
     return { data: result.rows, total: result.count };
   }
   // 创建角色
-  async create({ code, name, description, status, createUser }) {
+  async create ({ code, name, description, status, createUser }) {
     const { ctx } = this;
 
     const isHas = await ctx.model.Admin.Role.findOne({
@@ -60,7 +60,7 @@ class RoleService extends Service {
     };
   }
   // 编辑角色
-  async update({ id, code, name, description, status, updateUser }) {
+  async update ({ id, code, name, description, status, updateUser }) {
     const { ctx, app } = this;
 
     const role = await ctx.model.Admin.Role.findByPk(id);
@@ -95,7 +95,7 @@ class RoleService extends Service {
     };
   }
   // 删除角色
-  async remove(id) {
+  async remove (id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Role.destroy({
       where: { id },
@@ -103,7 +103,7 @@ class RoleService extends Service {
     return result;
   }
   // 获取角色关联用户
-  async getRoleUsers(id) {
+  async getRoleUsers (id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Role.findOne({
       where: {
@@ -120,7 +120,7 @@ class RoleService extends Service {
     return result.admin_users;
   }
   // 修改用户角色
-  async updateRoleUsers(id, userIds) {
+  async updateRoleUsers (id, userIds) {
     const { ctx } = this;
     const role = await ctx.model.Admin.Role.findByPk(id);
     const users = await ctx.model.Admin.User.findAll({
@@ -131,7 +131,7 @@ class RoleService extends Service {
     return role;
   }
   // 查询角色权限
-  async getRolePermissions(id) {
+  async getRolePermissions (id) {
     const { ctx } = this;
     const result = await ctx.model.Admin.Role.findOne({
       where: {
@@ -148,7 +148,7 @@ class RoleService extends Service {
     return result.admin_permissions;
   }
   // 修改角色权限
-  async updateRolePermissions(id, permissionIds) {
+  async updateRolePermissions (id, permissionIds) {
     const { ctx } = this;
     const role = await ctx.model.Admin.Role.findByPk(id);
     const permissions = await ctx.model.Admin.Permission.findAll({

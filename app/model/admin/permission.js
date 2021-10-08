@@ -37,7 +37,7 @@ module.exports = app => {
       comment: '创建人',
     },
   }, {
-    comment: '管理端-权限表'
+    comment: '管理端-权限表',
   });
   // AdminPermission.sync({ alter: true });
   return AdminPermission;

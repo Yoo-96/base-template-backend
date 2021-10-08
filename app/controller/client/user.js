@@ -18,7 +18,7 @@ class UserController extends Controller {
    * @request body clientUserCreateRequest *body
    * @response 200 clientUserCreateResponse
    */
-  async register() {
+  async register () {
     const { ctx, app } = this;
     const { mobile, password } = ctx.request.body;
 
@@ -44,7 +44,7 @@ class UserController extends Controller {
    * @request body clientUserLoginRequest *body
    * @response 200 clientUserLoginResponse
    */
-  async login() {
+  async login () {
     const { ctx } = this;
     const { mobile, password } = ctx.request.body;
 
@@ -75,7 +75,7 @@ class UserController extends Controller {
    * @description 用户登出
    * @response 200 clientUserLogoutResponse
    */
-  async logout() {
+  async logout () {
     const { ctx } = this;
     ctx.session = null;
     return ctx.helper.success(ctx, {
@@ -89,7 +89,7 @@ class UserController extends Controller {
    * @description 获取当前用户信息
    * @response 200 clientUserCurrentUserResponse
    */
-  async getCurrentUser() {
+  async getCurrentUser () {
     const { ctx } = this;
     const currentUser = await ctx.service.client.user.getCurrentUser();
     if (!currentUser) {

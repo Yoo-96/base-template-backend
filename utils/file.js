@@ -67,8 +67,8 @@ const checkFileExisted = async (filePath, fileHash) => {
  * @param {string} extension 文件扩展名
  * @returns {string} 返回UUID文件名
  */
-const getUUIIFileName = (extension) => {
-  return `${generateUUID()}.${extension}`
+const getUUIIFileName = extension => {
+  return `${generateUUID()}.${extension}`;
 };
 
 /**

@@ -82,9 +82,10 @@ class FileController extends Controller {
       ctx.set('Content-Length', size);
       ctx.set('Content-type', mimeType);
       ctx.set('Content-Disposition', `attachment; filename=${utf8.encode(fileName)}`);
-      return ctx.body = file;
+      ctx.body = file;
+    } else {
+      ctx.helper.fail(ctx, { msg: '附件不存在' });
     }
-    ctx.helper.fail(ctx, { msg: '附件不存在' });
   }
 
   /**
@@ -94,7 +95,7 @@ class FileController extends Controller {
    * @request formData file *file 文件流
    * @response 200 imageUploadResponse
    */
-  async uploadImage() {
+  async uploadImage () {
     const { ctx, app } = this;
     const file = ctx.request.files[0];
 
@@ -124,7 +125,7 @@ class FileController extends Controller {
    * @description 图片预览
    * @request query string *file 文件名
    */
-  async imagePreview() {
+  async imagePreview () {
     const { ctx, app } = this;
     const { file } = ctx.query;
 
@@ -142,7 +143,7 @@ class FileController extends Controller {
     }
   }
   // 腾讯cos图片预览
-  async imagePreviewToCOS() {
+  async imagePreviewToCOS () {
     const { ctx, app } = this;
     const { file } = ctx.query;
     const result = await ctx.service.file.index.imagePreviewToCOS(file);

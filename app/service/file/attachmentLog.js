@@ -4,6 +4,8 @@
  *@CreateTime: 2021-09-30 15:22
  *@Description: 附件日志
  */
+'use strict';
+
 const Service = require('egg').Service;
 
 class AttachmentsService extends Service {

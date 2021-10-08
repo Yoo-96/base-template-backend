@@ -5,6 +5,7 @@
  *@Description: 文件模块
  */
 'use strict';
+
 const Service = require('egg').Service;
 const mime = require('mime-types');
 const qiniu = require('qiniu');
@@ -18,7 +19,7 @@ const { getCurrentDate } = require('../../../utils/date');
 
 class FileService extends Service {
   // 七牛云文件上传
-  async uploadToQiniu(file) {
+  async uploadToQiniu (file) {
     const { app, logger } = this;
 
     const stream = createReadStream(file.filepath);
@@ -41,7 +42,7 @@ class FileService extends Service {
 
       // 上传七牛云
       return await new Promise((resolve, reject) => {
-        formUploader.putFile(uploadToken, null, localFile, putExtra, function(respErr, respBody, respInfo) {
+        formUploader.putFile(uploadToken, null, localFile, putExtra, function (respErr, respBody, respInfo) {
           unlinkSync(localFile);
           if (respErr) {
             reject(respErr);
@@ -62,7 +63,7 @@ class FileService extends Service {
     }
   }
   // 上传文件到本地磁盘
-  async writeInLocal(file, fileName, folderName) {
+  async writeInLocal (file, fileName, folderName) {
     const { app, logger } = this;
 
     const stream = createReadStream(file.filepath);
@@ -115,7 +116,7 @@ class FileService extends Service {
     };
   }
   // 上传本地
-  async uploadImageToLocal(file) {
+  async uploadImageToLocal (file) {
     const { app, logger } = this;
     const folderName = 'local/images';
 
@@ -128,15 +129,14 @@ class FileService extends Service {
 
     // 判断文件是否已存在
     if (!isFileExisted) {
-      return await this.writeInLocal(file, fileName, folderName)
-    } else {
-      await sendToWormhole(stream);
-      logger.info('uploadImage image is exist fileName: %s ', fileName);
-      return { fileName };
+      return await this.writeInLocal(file, fileName, folderName);
     }
+    await sendToWormhole(stream);
+    logger.info('uploadImage image is exist fileName: %s ', fileName);
+    return { fileName };
   }
   // 腾讯cos文件上传
-  async uploadToCOS(file) {
+  async uploadToCOS (file) {
     const { app, logger } = this;
 
     const stream = createReadStream(file.filepath);
@@ -156,7 +156,7 @@ class FileService extends Service {
           Region: app.config.cos.Region,
           Key: fileName,
           FilePath: localFile,
-        }, function(err, res) {
+        }, function (err, res) {
           unlinkSync(localFile);
           if (err || res.statusCode !== 200) {
             reject(err || res);
@@ -174,7 +174,7 @@ class FileService extends Service {
     }
   }
   // 腾讯cos图片预览
-  async imagePreviewToCOS(fileName) {
+  async imagePreviewToCOS (fileName) {
     const { app, logger } = this;
 
     const cos = getCosToken(app);
@@ -187,7 +187,7 @@ class FileService extends Service {
           Region: app.config.cos.Region,
           Key: fileName,
           Output: createWriteStream(localFile),
-        }, function(err, res) {
+        }, function (err, res) {
           if (err || res.statusCode !== 200) {
             reject(err || res);
           } else {

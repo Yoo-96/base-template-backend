@@ -10,7 +10,7 @@ const { toInt } = require('../../../utils/utils');
 
 class ClientUserService extends Service {
   // 查询用户列表
-  async query({ page = 1, size = 10 }) {
+  async query ({ page = 1, size = 10 }) {
     const { ctx } = this;
 
     const query = {
@@ -25,7 +25,7 @@ class ClientUserService extends Service {
     return { data: result.rows, total: result.count };
   }
   // 启用、禁用用户
-  async updateUserStatus(id) {
+  async updateUserStatus (id) {
     const { ctx } = this;
     const user = await ctx.model.Client.User.findOne({ where: { id } });
     await ctx.model.Client.User.update({

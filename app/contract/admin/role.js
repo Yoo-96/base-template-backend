@@ -4,6 +4,7 @@
  *@CreateTime: 2021-09-27 11:24
  *@Description: 管理端 - 用户管理 请求体和响应体
  */
+'use strict';
 
 module.exports = {
   // 角色列表响应体
@@ -12,12 +13,12 @@ module.exports = {
       type: 'string',
       example: [
         {
-          "id": "ID",
-          "name": "角色名称",
-          "code": "角色编码",
-          "status": "状态, 0: 禁用, 1:启用",
-          "description": "角色描述"
-        }
+          id: 'ID',
+          name: '角色名称',
+          code: '角色编码',
+          status: '状态, 0: 禁用, 1:启用',
+          description: '角色描述',
+        },
       ],
     },
     total: { type: 'number', example: '0' },
@@ -46,18 +47,18 @@ module.exports = {
       type: 'string',
       example: [
         {
-          "id": "ID",
-          "account": "用户账号",
-          "mobile": "用户手机号",
-          "userName": "用户名称"
-        }
+          id: 'ID',
+          account: '用户账号',
+          mobile: '用户手机号',
+          userName: '用户名称',
+        },
       ],
     },
   },
 
   // 修改角色用户请求体
   adminUpdateRoleUserRequest: {
-    userIds: { type: 'string', example: [], description: '用户ID集合' }
+    userIds: { type: 'string', example: [], description: '用户ID集合' },
   },
 
   // 角色权限响应体
@@ -66,16 +67,16 @@ module.exports = {
       type: 'string',
       example: [
         {
-          "code": "权限编码",
-          "name": "权限名称",
-          "id": "ID"
-        }
-      ]
-    }
+          code: '权限编码',
+          name: '权限名称',
+          id: 'ID',
+        },
+      ],
+    },
   },
 
   // 修改角色权限请求体
   adminUpdateRolePermissionsRequest: {
-    permissionIds: { type: 'string', example: [], description: '权限ID集合' }
-  }
+    permissionIds: { type: 'string', example: [], description: '权限ID集合' },
+  },
 };

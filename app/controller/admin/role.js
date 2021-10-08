@@ -17,7 +17,7 @@ class RoleController extends Controller {
    * @request query integer *pageSize 分页条数
    * @response 200 adminRoleQueryResponse
    */
-  async query() {
+  async query () {
     const { ctx } = this;
     const {
       current = 1,
@@ -42,7 +42,7 @@ class RoleController extends Controller {
    * @request body adminRoleCreateRequest *body
    * @response 200 baseResponse
    */
-  async create() {
+  async create () {
     const { ctx } = this;
     const {
       code,
@@ -70,7 +70,7 @@ class RoleController extends Controller {
    * @request body adminRoleUpdateRequest *body
    * @response 200 baseResponse
    */
-  async update() {
+  async update () {
     const { ctx } = this;
     const {
       id,
@@ -100,10 +100,10 @@ class RoleController extends Controller {
    * @request path string *id 角色ID
    * @response 200 baseResponse
    */
-  async remove() {
+  async remove () {
     const { ctx } = this;
     const { id } = ctx.params;
-    const result = await ctx.service.admin.role.remove(id);
+    await ctx.service.admin.role.remove(id);
     ctx.helper.success(ctx, 'success');
   }
   /**
@@ -113,7 +113,7 @@ class RoleController extends Controller {
    * @request path string *id 用户ID
    * @response 200 adminRoleUserResponse
    */
-  async getRoleUsers() {
+  async getRoleUsers () {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRoleUsers(id);
@@ -126,7 +126,7 @@ class RoleController extends Controller {
    * @request body adminUpdateRoleUserRequest *body
    * @response 200 baseResponse
    */
-  async updateRoleUsers() {
+  async updateRoleUsers () {
     const { ctx } = this;
     const { id } = ctx.params;
     const { userIds } = ctx.request.body;
@@ -140,7 +140,7 @@ class RoleController extends Controller {
    * @request path string *id 用户ID
    * @response 200 adminRolePermissionsResponse
    */
-  async getRolePermissions() {
+  async getRolePermissions () {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.role.getRolePermissions(id);
@@ -154,7 +154,7 @@ class RoleController extends Controller {
    * @request body adminUpdateRolePermissionsRequest *body
    * @response 200 baseResponse
    */
-  async updateRolePermissions() {
+  async updateRolePermissions () {
     const { ctx } = this;
     const { id } = ctx.params;
     const { permissionIds } = ctx.request.body;

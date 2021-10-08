@@ -49,7 +49,7 @@ module.exports = appInfo => {
 
   // egg-validate-plus 异常拦截
   config.validatePlus = {
-    resolveError(ctx, errors) {
+    resolveError (ctx, errors) {
       if (errors.length) {
         ctx.type = 'json';
         ctx.status = 400;
@@ -151,12 +151,12 @@ module.exports = appInfo => {
       title: 'xxx项目接口',
       description: 'xxx项目接口 swagger-ui for egg',
       version: '1.0.0',
-    }, //接口文档主要信息、描述、版本号
-    schemes: ['http', 'https'], //协议
-    consumes: ['application/json'], //输出方式
-    produces: ['application/json'],
+    }, // 接口文档主要信息、描述、版本号
+    schemes: [ 'http', 'https' ], // 协议
+    consumes: [ 'application/json' ], // 输出方式
+    produces: [ 'application/json' ],
     enableSecurity: false,
-    //enableValidate:true,// 是否开启参数校验（很遗憾虽然有这个api，但是功能没有实现）
+    // enableValidate:true, // 是否开启参数校验（很遗憾虽然有这个api，但是功能没有实现）
     routerMap: true, // 是否自动注册路由（很香）
     enable: true,
   };

@@ -17,7 +17,7 @@ class ClientUserController extends Controller {
    * @request query integer *pageSize 分页条数
    * @response 200 adminUserQueryResponse
    */
-  async query() {
+  async query () {
     const { ctx } = this;
     const { currentPage = 1, pageSize = 20 } = ctx.query;
     const result = await ctx.service.admin.clientUser.query({ pageSize, currentPage });
@@ -36,7 +36,7 @@ class ClientUserController extends Controller {
    * @request path string *id 用户ID
    * @response 200 baseResponse
    */
-  async updateUserStatus() {
+  async updateUserStatus () {
     const { ctx } = this;
     const { id } = ctx.params;
     const result = await ctx.service.admin.clientUser.updateUserStatus(id);

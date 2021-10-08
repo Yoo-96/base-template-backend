@@ -26,7 +26,7 @@ const protect = spec => {
     authority.concat(spec);
   }
 
-  return async function protect(ctx, next) {
+  return async function protect (ctx, next) {
     const { currentUser } = ctx.session;
     if (currentUser) {
       const user = await ctx.service.admin.user.findUserById(currentUser.id);

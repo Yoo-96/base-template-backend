@@ -9,7 +9,7 @@ const Service = require('egg').Service;
 
 class UserService extends Service {
   // 创建用户
-  async register(mobile, password) {
+  async register (mobile, password) {
     const { ctx } = this;
     const params = { mobile, password, account: mobile };
 
@@ -34,7 +34,7 @@ class UserService extends Service {
     };
   }
   // 用户登录
-  async login(mobile, password) {
+  async login (mobile, password) {
     const { ctx } = this;
     const query = {
       where: {
@@ -53,13 +53,13 @@ class UserService extends Service {
   }
 
   // 获取当前用户信息
-  async getCurrentUser() {
+  async getCurrentUser () {
     const { ctx } = this;
     const { id } = ctx.session.currentUser;
     return this.findUserById(id);
   }
   // 根据id查询用户详情
-  async findUserById(id) {
+  async findUserById (id) {
     const { ctx } = this;
     return await ctx.model.Client.User.findOne({
       where: { id },

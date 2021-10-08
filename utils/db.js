@@ -7,11 +7,11 @@
 'use strict';
 const uuidv1 = require('uuid/v1');
 
-function generateUUID() {
+function generateUUID () {
   return uuidv1();
 }
 
-function defineModel(app, name, attributes, options = {}) {
+function defineModel (app, name, attributes, options = {}) {
   const { UUID } = app.Sequelize;
   const attrs = {};
 

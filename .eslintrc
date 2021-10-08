@@ -1,3 +1,7 @@
 {
-  "extends": "eslint-config-egg"
+  "extends": "eslint-config-egg",
+  "rules": {
+    "space-before-function-paren": ["error", "always"],
+    "jsdoc/check-tag-names": 0
+  }
 }

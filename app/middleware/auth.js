@@ -6,7 +6,7 @@
  */
 'use strict';
 module.exports = () => {
-  return async function auth(ctx, next) {
+  return async function auth (ctx, next) {
     const currentUser = ctx.session.currentUser;
     // 登录白名单列表
     const whiteList = [

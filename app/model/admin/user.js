@@ -60,7 +60,7 @@ module.exports = app => {
       comment: '最后登录ip',
     },
   }, {
-    comment: '管理端-用户表'
+    comment: '管理端-用户表',
   });
 
   User.associate = () => {
