@@ -6,9 +6,19 @@
  */
 
 'use strict';
+const path = require('path');
 
-module.exports = () => {
+module.exports = appInfo => {
   const config = {};
+
+  // 文件储存路径
+  config.upload_base_path = path.join(appInfo.baseDir, 'temp');
+  // 本地图片预览接口
+  config.image_preview_url = 'http://localhost:7001/api/v1/file/imagePreview';
+  // 腾讯cos图片预览接口
+  config.image_preview_cos_url = 'http://localhost:7001/api/v1/file/cImagePreview';
+  // 本地附件下载接口
+  config.attachment_download_url = 'http://localhost:7001/api/v1/file/downloadFile';
 
   config.sequelize = {
     dialect: 'mysql', // 数据库类型

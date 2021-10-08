@@ -23,7 +23,8 @@
     "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "qiniu": "^7.3.2",
-    "stream-wormhole": "^1.1.0"
+    "stream-wormhole": "^1.1.0",
+    "utf8": "^3.0.0"
   },
   "devDependencies": {
     "autod": "^3.0.1",

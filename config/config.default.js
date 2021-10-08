@@ -76,7 +76,7 @@ module.exports = appInfo => {
   // session配置
   config.session = {
     key: 'SESSION_ID',
-    maxAge: 30 * 1000 * 60, // 过期时间30min
+    maxAge: 120 * 1000 * 60, // 过期时间30min
     httpOnly: true,
     encrypt: false,
     renew: false, // 每次访问页面都会给session会话延长时间
@@ -99,13 +99,6 @@ module.exports = appInfo => {
     Bucket: 'base-1254446717',
     Region: 'ap-guangzhou',
   };
-
-  // 文件储存路径
-  config.upload_base_path = path.join(appInfo.baseDir, 'temp');
-  // 本读图片预览接口
-  config.image_preview_url = 'http://localhost:7001/api/v1/file/imagePreview';
-  // 腾讯cos图片预览接口
-  config.image_preview_cos_url = 'http://localhost:7001/api/v1/file/cImagePreview';
 
   // 文件限制
   config.multipart = {

@@ -6,6 +6,7 @@
  */
 'use strict';
 const _ = require('lodash');
+const uuidv1 = require('uuid/v1');
 
 _.mixin({
   toPairsDeep: obj => _.flatMap(
@@ -38,7 +39,16 @@ const populatePropertiesFromArray = (arr, key) => {
     .value();
 };
 
+/**
+ * 生成UUID
+ * @returns {*} 返回生成UUID
+ */
+const generateUUID = () => {
+  return uuidv1();
+};
+
 module.exports = {
   toInt,
   populatePropertiesFromArray,
+  generateUUID,
 };

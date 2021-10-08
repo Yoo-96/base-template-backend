@@ -5,10 +5,11 @@
  *@Description: 文件公共方法
  */
 'use strict';
-const { existsSync, mkdirSync } = require('mz/fs');
+const { existsSync, mkdirSync, stat } = require('mz/fs');
 const hasha = require('hasha');
 const mime = require('mime-types');
 const path = require('path');
+const { generateUUID } = require('./utils');
 
 /**
  * 获取文件hash名
@@ -61,8 +62,32 @@ const checkFileExisted = async (filePath, fileHash) => {
   return isFileExisted;
 };
 
+/**
+ * 生成UUID文件名
+ * @param {string} extension 文件扩展名
+ * @returns {string} 返回UUID文件名
+ */
+const getUUIIFileName = (extension) => {
+  return `${generateUUID()}.${extension}`
+};
+
+/**
+ * 获取指定文件大小
+ * @param {*} app app实例
+ * @param {string} folderName 文件夹
+ * @param {string} fileName 文件名
+ * @returns {Promise<*>} 返回结果
+ */
+const getFileSize = async (app, folderName, fileName) => {
+  const localPath = app.config.upload_base_path + '/' + folderName + '/' + fileName;
+  const res = await stat(localPath);
+  return res.size;
+};
+
 module.exports = {
   getFileHashName,
   getFilePath,
   checkFileExisted,
+  getUUIIFileName,
+  getFileSize,
 };

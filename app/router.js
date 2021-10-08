@@ -53,6 +53,9 @@ module.exports = app => {
   router.post('/api/v1/file/uploadImage', controller.file.index.uploadImage); // 图片上传
   router.get('/api/v1/file/imagePreview', controller.file.index.imagePreview); // 图片预览
   router.get('/api/v1/file/cImagePreview', controller.file.index.imagePreviewToCOS); // 腾讯cos图片预览
+  router.post('/api/v1/file/uploadFile', controller.file.index.uploadFile); // 附件上传
+  router.get('/api/v1/file/downloadFile', controller.file.index.downloadFile); // 附件下载
+
 
   // ---------------------- 文件模块结束 ----------------------
 

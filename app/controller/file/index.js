@@ -11,6 +11,8 @@ const mime = require('mime-types');
 const sendToWormhole = require('stream-wormhole');
 const { readFileSync, unlinkSync } = require('mz/fs');
 const path = require('path');
+const utf8 = require('utf8');
+const { AttachmentLogEnums } = require('../../../enums/AttachmentLogEnums');
 
 class FileController extends Controller {
   /**
@@ -21,29 +23,68 @@ class FileController extends Controller {
    * @response 200 imageUploadResponse
    */
   async uploadFile () {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const file = ctx.request.files[0];
 
-    const mimeType = file.mimeType;
-    const extension = mime.extension(mimeType);
-
-    const fileResult = await ctx.service.file.index.uploadToLocal(file, 'local/attachments'); // 上传本地磁盘
+    const createUser = ctx.session.currentUser.id;
+    const fileResult = await ctx.service.file.index.uploadAttachmentToLocal(file); // 上传本地磁盘
 
     if (fileResult) {
-      const data = {
-        fileName: '',
-        hashFileName: '',
-        mimeType: '',
-        extension,
-        size: '',
+      const attachmentData = {
+        fileName: file.filename,
+        writeInName: fileResult.writeInName,
+        mimeType: file.mimeType,
+        extension: fileResult.extension,
+        size: fileResult.size,
         url: '',
-        diskPath: '',
-        businessId: '',
-        createUser: '',
+        folderName: fileResult.folderName,
+        createUser,
+      };
+      const attachmentRes = await ctx.service.file.attachments.saveAttachment(attachmentData);
+      if (attachmentRes) {
+        const id = attachmentRes.id;
+        const downloadUrl = app.config.attachment_download_url + '?id=' + id; // 附件下载地址
+        const logData = {
+          attachmentId: attachmentRes.id,
+          createUser,
+          operationType: AttachmentLogEnums.CREATE,
+        };
+        await ctx.service.file.attachmentLog.createAttachmentLog(logData);
+        return ctx.helper.success(ctx, { id, downloadUrl });
       }
-    } else {
-      return ctx.helper.fail(ctx, { msg: '上传失败，请稍后重试！' });
     }
+    ctx.helper.fail(ctx, { msg: '上传失败，请稍后重试！' });
+  }
+  /**
+   * @router post /api/v1/file/downloadFile
+   * @summary 附件下载
+   * @description 附件下载
+   * @request query string *id 附件ID
+   */
+  async downloadFile () {
+    const { ctx, app } = this;
+    const { id } = ctx.query;
+
+    const attachmentDetail = await ctx.service.file.attachments.getAttachmentById(id);
+
+    if (attachmentDetail) {
+      const { fileName, writeInName, mimeType, folderName, size } = attachmentDetail;
+      const logData = {
+        attachmentId: id,
+        createUser: ctx.session.currentUser.id,
+        operationType: AttachmentLogEnums.DOWNLOAD,
+      };
+      await ctx.service.file.attachmentLog.createAttachmentLog(logData);
+
+      const uploadBasePath = app.config.upload_base_path + '/local/attachments' + folderName;
+      const filePath = path.join(uploadBasePath, writeInName);
+      const file = readFileSync(filePath);
+      ctx.set('Content-Length', size);
+      ctx.set('Content-type', mimeType);
+      ctx.set('Content-Disposition', `attachment; filename=${utf8.encode(fileName)}`);
+      return ctx.body = file;
+    }
+    ctx.helper.fail(ctx, { msg: '附件不存在' });
   }
 
   /**
