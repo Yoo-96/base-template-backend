@@ -23,7 +23,7 @@ module.exports = app => {
     comment: '管理端-角色权限中间表',
   });
 
-  // AdminRolePermissions.sync({ alter: true });
+  AdminRolePermissions.sync({ alter: true });
   return AdminRolePermissions;
 };
 

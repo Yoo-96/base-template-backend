@@ -49,6 +49,6 @@ module.exports = app => {
     });
   };
 
-  // Role.sync({ alter: true });
+  Role.sync({ alter: true });
   return Role;
 };
