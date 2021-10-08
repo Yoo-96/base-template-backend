@@ -1,11 +1,17 @@
-// 数据模型默认配置
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 数据模型默认配置
+ */
+'use strict';
 const uuidv1 = require('uuid/v1');
 
-function generateUUID() {
+function generateUUID () {
   return uuidv1();
 }
 
-function defineModel(app, name, attributes, options = {}) {
+function defineModel (app, name, attributes, options = {}) {
   const { UUID } = app.Sequelize;
   const attrs = {};
 
@@ -29,7 +35,6 @@ function defineModel(app, name, attributes, options = {}) {
       };
     }
   }
-
 
   return app.model.define(name, attrs, {
     createdAt: 'createdAt',

@@ -1,3 +1,9 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 系统插件配置
+ */
 'use strict';
 
 /** @type Egg.EggPlugin */
@@ -26,5 +32,10 @@ module.exports = {
   sessionRedis: {
     enable: true,
     package: 'egg-session-redis',
+  },
+
+  swaggerdoc: {
+    enable: true,
+    package: 'egg-swagger-doc',
   },
 };

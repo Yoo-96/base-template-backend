@@ -1,7 +1,13 @@
+/**
+ *@BelongsProject: base-template-backend
+ *@Author: yoo
+ *@CreateTime:
+ *@Description: 错误处理中间件
+ */
 'use strict';
 
 module.exports = () => {
-  return async function errorHandler(ctx, next) {
+  return async function errorHandler (ctx, next) {
     try {
       await next();
     } catch (err) {
