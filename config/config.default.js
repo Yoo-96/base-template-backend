@@ -148,8 +148,8 @@ module.exports = appInfo => {
   config.swaggerdoc = {
     dirScanner: './app/controller', // 指定swaggerdoc从哪个目录开始检索,
     apiInfo: {
-      title: 'xxx项目接口',
-      description: 'xxx项目接口 swagger-ui for egg',
+      title: 'base-template-backend',
+      description: 'base-template-backend项目接口 swagger-ui for egg',
       version: '1.0.0',
     }, // 接口文档主要信息、描述、版本号
     schemes: [ 'http', 'https' ], // 协议
