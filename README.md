@@ -4,7 +4,11 @@
 
 实现了用户注册登陆、用户管理、角色权限控制、附件上传（本地、七牛云、腾讯cos）等功能。
 
-[仓库地址 - github](https://github.com/Yoo-96/base-template-backend)，欢迎使用和点亮小星星。
+## 仓库地址
+
+[github](https://github.com/Yoo-96/base-template-backend)，欢迎使用和点亮小星星。
+
+[gitee](https://gitee.com/developer-yoo-group/base-template-backend)，欢迎使用和点亮小星星。
 
 ## 实现的功能
 
@@ -177,6 +181,8 @@ $ npm stop
 
 ```bash
 $ git clone https://gitee.com/developer-yoo-group/base-template-backend.git yoo-project-name
+or
+$ git clone git@github.com:Yoo-96/base-template-backend.git
 ```
 
 ### 修改package.json
@@ -223,5 +229,4 @@ module.exports = appInfo => {
 ```
 
 ### 更多修改请根据项目需求
-
 
